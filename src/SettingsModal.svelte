@@ -4,7 +4,7 @@
 
   import { ProviderFactories } from './providers';
   import { Location } from './providers/Location';
-  import { Units, AutoExpand, loadConfiguration, Layout, storeConfiguration } from './Configuration';
+  import { Units, AutoExpand, loadConfiguration, storeConfiguration } from './Configuration';
 
   import { Modal, Tabs, TabItem, Label, Select, Input, Hr, Button, ButtonGroup, Spinner, Radio, Checkbox } from 'flowbite-svelte';
   import Icon from '@iconify/svelte';
@@ -29,7 +29,6 @@
   let showHourlyPrecipitation: boolean;
   let showHourlyWind: boolean;
   let valid: boolean;
-  let layout: Layout;
 
   /* Loading State for location */
   let locationLoading: boolean = false;
@@ -52,7 +51,6 @@
     title = currentConfiguration.title;
     showHourlyPrecipitation = currentConfiguration.showHourlyPrecipitation;
     showHourlyWind = currentConfiguration.showHourlyWind;
-    layout = currentConfiguration.layout;
 
     updateProviderParams();
 
@@ -90,7 +88,6 @@
       refreshInterval: currentConfiguration.refreshInterval,
       showHourlyPrecipitation,
       showHourlyWind,
-      layout,
     };
 
     storeConfiguration(configuration);
@@ -204,17 +201,6 @@
                 { name: 'None', value: AutoExpand.None },
               ]}
               bind:value={autoexpand}
-            />
-          </div>
-          <div>
-            <Label for="select-layout" class="mb-2">Layout</Label>
-            <Select
-              id="select-layout"
-              items={[
-                { name: 'Horizontal', value: Layout.Horizontal },
-                { name: 'Vertical', value: Layout.Vertical },
-              ]}
-              bind:value={layout}
             />
           </div>
           <div>
